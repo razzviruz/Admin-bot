@@ -1,10 +1,9 @@
-const dbutils = require('../include/dbutils');
 const { MessageEmbed } = require('discord.js');
 exports.run = async (client, message, args) => {
     if (!args.length || args[0].match(/[a-z]/i)) return message.channel.send('Incorrect Usage. Example:```css\n' + client.config.prefix + 'execute <serverid | ip:port | serial no. from status cmd> <!help>```');
     if (args[0] <= 0 || !(args.length >= 2)) return message.channel.send('Incorrect Usage. Example:```css\n' + client.config.prefix + 'execute <serverid | ip:port | serial no. from status cmd> <!help>```');
 
-    let dbresponse = await dbutils.getData(message.author.id);
+    let dbresponse = await client.db.prepare("SELECT * FROM userinfo WHERE id = @id;").get({ id: message.author.id });
     if (!dbresponse) return message.channel.send("You need to login to use this command.\nType: `" + client.config.prefix + "login`");
 
     const id = args.shift();

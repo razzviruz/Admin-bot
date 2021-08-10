@@ -8,7 +8,9 @@ if (!fs.existsSync("./config.json")) {
 }
 
 client.config = require("./config.json");
-client.function = require("./include/core.js");
+client.function = require("./include/core");
+if (!fs.existsSync("./database")) fs.mkdirSync("./database");
+client.db = require("better-sqlite3")("./database/db.sqlite");
 
 client.function.configcheck(client);
 

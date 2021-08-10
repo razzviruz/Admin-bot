@@ -33,30 +33,38 @@ ___
 
 Latest binary builds are always available at:
 
-* [GitHub (Basic)](https://github.com/Sparker-99/Admin-bot/releases)
+* [GitHub (Sqlite)](https://github.com/Sparker-99/Admin-bot/releases)
 
 ___
 
-### Setup
-
-**Admin bot** requires less effort to get up and running.
-
-#### Prerequisites
+### Prerequisites
 
 * [Node.js 16](https://nodejs.org/en/download) *or newer*
 * [IW4M Admin](https://raidmax.org/IW4MAdmin) version 2021.07.12.1 *or newer*
+___
 
-#### Installation
+### Windows Installation
 
-* Windows
-  + Install Node.js
-  + Extract `Admin-bot.zip`
-  + Copy `config_default.json` as `config.json`
-  + Edit `config.json` (add your token, prefix, webfronturl and adminid)
-  + Open console inside the **admin bot's** directory, type `npm i` and hit enter
-  + Run `StartAdminBot.cmd` or `npm start` in command prompt
+* Windows Server 2019
+   + Install the latest of Node.js (16 or higher)
+   + Install Visual Studio Community 2019
+   + Select Desktop Development with C++, Uncheck all optionals
+   + Install latest Python
+   + Run following commands:
+    ```
+    npm config set msvs_version 2019
+    npm config set msbuild_path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe"
+    ```
+   + Extract `Admin-bot.zip`
+   + Copy `config_default.json` as `config.json`
+   + Edit `config.json` (add your token, prefix, webfronturl and adminid)
+   + Open console inside the **admin bot's** directory, type `npm i` and hit enter
+   + Run `StartAdminBot.cmd` or `npm start` in command prompt
+___
 
-* Linux (Ubuntu 20:04)
+### Linux Installation
+
+* Ubuntu 20:04
   + Open Terminal and type:
   + `sudo apt install nodejs npm`
   + `mkdir DiscordBot`
@@ -77,7 +85,7 @@ Download [latest build](https://github.com/Sparker-99/Admin-bot/releases) and Ex
 + Existing `config.json` and `database` folder will be not overwritten by the update.
   + NOTE: any update of the `config_default.json` need to be merged manually by the user to the `config.json`.
 + Any edit done on default `commands` files will be lost. Consider backup or rename the file before update.
-+ Admin bot v3.0.5 or higher uses `Node 16` which kills any application with critical exceptions. So its recommended to use any program that restarts the bot.
++ Admin bot v3.0.5 or higher uses `Node 16` which kills any application with critical exceptions. So its recommended to use any program that restarts the bot
 ___
 
 ### Configuration
@@ -107,21 +115,17 @@ Create a discord application from [discord developers](https://discord.com/devel
  * `thumbnail_image_url` &mdash; You can insert an image link to get custom thumbnail for all embed discord messages
  * `footer` &mdash; You can insert a footer message to display as footer for all embed discord messages
  * `ownerid` &mdash; You can insert an admin's or bot owner's client id to lock botinfo for administrator or bot owner
- ___
+___
 
 ### FAQ
 
 * #### Does Admin bot stores my ID and Password for Webfront ?
 
   + **No**, Admin bot retrieves **cookies** 🍪 from webfront which is saved and used for executing commands from Discord. Cookies are valid for 30 days or until host machine restart. You can successfully delete id and password in dm after login success message.
-
+  
 * #### Why does the connect in serverinfo command not working ?
 
   + Not all clients support **direct connect**. Even it supports I dont know its launch url. If you know the launch url for **direct connect** for any client contact me on [Discord](https://discord.gg/tGkbpCD)
-
-* #### Why not use a proper Sqlite database instead of Json database ?
-
-  + Sqlite Requires [Windows-Build-Tools](https://github.com/felixrieseberg/windows-build-tools) which is a hassle for most windows users. So for Advanced Users [Admin bot with Sqlite](https://github.com/Sparker-99/Admin-bot/tree/sqlite3) is available. There is no need for Windows-Build-Tools in case of linux.
 ___
 
 ### Contributers

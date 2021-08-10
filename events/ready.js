@@ -1,8 +1,18 @@
 const fetch = require('node-fetch');
-const dbutils = require('../include/dbutils');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = async (client) => {
+    let sql = client.db;
+    const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'userinfo';").get();
+
+    if (!table['count(*)']) {
+        sql.prepare("CREATE TABLE IF NOT EXISTS userinfo (id INTEGER, client_id INTEGER, cookie VARCHAR);").run();
+        sql.prepare("CREATE TABLE IF NOT EXISTS chanmsgs (chid INTEGER, msgids VARCHAR);").run();
+        sql.prepare("CREATE UNIQUE INDEX user_id ON userinfo (id);").run();
+        sql.pragma("synchronous = 1");
+        sql.pragma("journal_mode = wal");
+    }
+
     async function presence() {
         let infos = await client.function.fetchinfo(client.config.admin_id);
         if (infos) {
@@ -68,9 +78,11 @@ module.exports = async (client) => {
             let srdata = await client.function.fetchinfo(client.config.admin_id);
             if (!srdata) return;
 
-            let fetchids = await dbutils.fetchData(statchan.id);
+            let fetchids = await client.db.prepare("SELECT * FROM chanmsgs WHERE chid = @chid;").get({ chid: statchan.id });
             let msgids = await processids(srdata, client.config.results_perpage, statchan);
-            dbutils.appendData(statchan.id, msgids.join());
+
+            if (fetchids) client.db.prepare("UPDATE chanmsgs SET msgids = @msgids WHERE chid = @chid;").run({ chid: statchan.id, msgids: msgids.join() });
+            else client.db.prepare("INSERT INTO chanmsgs (chid, msgids) VALUES (@chid, @msgids);").run({ chid: statchan.id, msgids: msgids.join() });
 
             if (fetchids) {
                 let rearr = fetchids.msgids.split(',');
