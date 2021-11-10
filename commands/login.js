@@ -4,7 +4,7 @@ exports.run = async (client, message) => {
         .catch(() => message.reply("📬 Your DM is closed. Kindly make sure your DM is open."));
 
     if (strdmsg.channel.type != 'DM') return;
-    
+
     message.channel.send("🔐 You are asked for id and password for <" + client.config.webfronturl + ">");
 
     const answer = await message.author.dmChannel.awaitMessages({ filter: m => m.content.split(' ').length === 2, max: 1, time: 30000, errors: ["time"] })

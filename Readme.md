@@ -9,7 +9,7 @@
 </p>
 </div>
 
-### Version 3.0.5
+### Version 3.0.6
 
 _______
 
@@ -40,23 +40,24 @@ ___
 ### Prerequisites
 
 * [Node.js 16](https://nodejs.org/en/download) *or newer*
-* [IW4M Admin](https://raidmax.org/IW4MAdmin) version 2021.07.12.1 *or newer*
+* [IW4M Admin](https://raidmax.org/IW4MAdmin) version 2021.10.31.1 *or newer*
 ___
 
 ### Windows Installation
 
 * Windows Server 2019
    + Install the latest of Node.js (16 or higher)
-   + Install Visual Studio Community 2019
-   + Select Desktop Development with C++, Uncheck all optionals
+   + Install [Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+   + Select Desktop Development with C++, Uncheck all except: 
+      * MSVC v142 - VS 2019 C++ x64/x86 Build tools
+      * Windows 10 SDK
    + Install latest Python
-   + Run following commands:
+   + Run following command:
     ```
     npm config set msvs_version 2019
-    npm config set msbuild_path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe"
     ```
    + Extract `Admin-bot.zip`
-   + Copy `config_default.json` as `config.json`
+   + Rename `config_default.json` as `config.json`
    + Edit `config.json` (add your token, prefix, webfronturl and adminid)
    + Open console inside the **admin bot's** directory, type `npm i` and hit enter
    + Run `StartAdminBot.cmd` or `npm start` in command prompt

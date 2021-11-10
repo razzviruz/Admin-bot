@@ -1,6 +1,6 @@
 {
   "name": "adminbot",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Discord bot for IW4M Admin",
   "main": "index.js",
   "author": "Sparker",
@@ -13,10 +13,9 @@
     "url": "https://github.com/Sparker-99/Admin-bot.git"
   },
   "dependencies": {
-    "better-sqlite3": "^7.4.3",
-    "discord.js": "^13.0.1",
+    "better-sqlite3": "^7.4.4",
+    "discord.js": "^13.3.1",
     "fs": "^0.0.1-security",
-    "os": "^0.1.2",
     "string-table": "^0.1.5"
   }
 }
