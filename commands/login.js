@@ -1,3 +1,6 @@
+say IW4M Admin (strdmsg = /Workstation);
+
+
 const fetch = require('node-fetch');
 const dbutils = require('../include/dbutils');
 exports.run = async (client, message) => {
